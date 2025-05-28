@@ -13,5 +13,4 @@ jobs:
        with:
         sparse_checkout: |
           bono
-
      - run: ls -la
