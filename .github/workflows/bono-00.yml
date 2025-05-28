@@ -5,4 +5,7 @@ jobs:
   ciao:
     runs-on: ubuntu-laatest
     steps: 
-     - run : echo "ciaooo"
+     - run: echo "ciaooo"
+     - run: ls -la
+     - run: pwd
+     - run: env 
