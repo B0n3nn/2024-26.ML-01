@@ -5,13 +5,13 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV, KFold
-from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay, make_scorer
+from sklearn.metrics import accuracy_score, make_scorer
 import joblib
 
 df = pd.read_csv(r"wine_quality_classification.csv")
 
-features = pd.drop (columns = ["quality_label"])
-target = pd["quality_label"]
+features = df.drop(columns = ["quality_label"])
+target = df["quality_label"]
 
 x_train, x_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)
 
