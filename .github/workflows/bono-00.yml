@@ -5,4 +5,4 @@ jobs:
   ciao:
     runs-on: ubuntu-laatest
     steps: 
-     - run : cho "ciaooo"
+     - run : echo "ciaooo"
