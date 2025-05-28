@@ -5,16 +5,15 @@ jobs:
   ciao:
     runs-on: ubuntu-latest # qui vuole il sistema operativo
     steps: #lista di comandi
-      - run: echo "sudo shutdown"
-      - run: python --version
-      - run: pip --version
-      - run: lsb_release -d
-      - run: ls -la 
-      - run: pwd
-      - run: env
       - uses: actions/checkout@v4
         with:
           sparse-checkout: | # il pipe serve a definire una stringa multilinea
             .github
             bono
       - run: ls -la
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13' 
+      - run: python --version
+      - run: python prova.py
+        working-directory: bono
