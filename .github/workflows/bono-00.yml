@@ -3,9 +3,15 @@ on:
   push:
 jobs: 
   ciao:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-la  test
     steps: 
      - run: echo "ciaooo"
      - run: ls -la
      - run: pwd
-     - run: env 
+     - run: env
+     - uses: actions/checkout@v4
+       with:
+        sparse_checkout: |
+          bono
+
+     - run: ls -la
