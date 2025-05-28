@@ -15,8 +15,7 @@ jobs:
         with:
           python-version: '3.13' 
       - run: python --
-      - run: pip install sklearn
-      - run: pip install joblib
+      - run: pip install scikit-learn joblib pandas
       - run: python prova.py
         working-directory: bono
       - run: ls -la
