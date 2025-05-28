@@ -1,16 +1,20 @@
-name: Action di Bono
-on: 
-  push:
+name: action di Bono #github action dice che ci deve essere una top level key name
+on:  # dizionario con chiave push
+  push: # una qualsiasi azione di push attiva questa action
 jobs: 
   ciao:
-    runs-on: ubuntu-la  test
-    steps: 
-     - run: echo "ciaooo"
-     - run: ls -la
-     - run: pwd
-     - run: env
-     - uses: actions/checkout@v4
-       with:
-        sparse_checkout: |
-          bono
-     - run: ls -la
+    runs-on: ubuntu-latest # qui vuole il sistema operativo
+    steps: #lista di comandi
+      - run: echo "sudo shutdown"
+      - run: python --version
+      - run: pip --version
+      - run: lsb_release -d
+      - run: ls -la 
+      - run: pwd
+      - run: env
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: | # il pipe serve a definire una stringa multilinea
+            .github
+            bono
+      - run: ls -la
