@@ -19,3 +19,4 @@ jobs:
       - run: python prova.py
         working-directory: bono
       - run: ls -la
+        working-directory: bono
