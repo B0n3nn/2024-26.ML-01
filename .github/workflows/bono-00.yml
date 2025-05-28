@@ -1,0 +1,8 @@
+name: Action di Bono
+on: 
+  push:
+jobs: 
+  ciao:
+    runs-on: ubuntu-laatest
+    steps: 
+     - echo "ciaooo"
