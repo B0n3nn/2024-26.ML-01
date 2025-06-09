@@ -24,3 +24,20 @@ jobs:
         with:
           name: best_species_classifier-v.0.0.1-RC
           path: bono/best_species_classifier.joblib
+  inferenza:
+    needs: ciao
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: | # il pipe serve a definire una stringa multilinea
+            .github
+            bono
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install scikit-learn joblib pandas
+      - uses: actions/download-artifact@v4
+        with:
+          path: bono/
+      - run: pytest
