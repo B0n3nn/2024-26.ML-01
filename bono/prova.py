@@ -1,21 +1,33 @@
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV, KFold
+from sklearn.compose import ColumnTransformer
 from sklearn.metrics import accuracy_score, make_scorer
 import joblib
 
-df = pd.read_csv(r"wine_quality_classification.csv")
+df = pd.read_csv(r"penguins_clean.csv")
 
-features = df.drop(columns = ["quality_label"])
-target = df["quality_label"]
+features = df.drop(columns = ["species"])
+target = df["species"]
 
 x_train, x_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)
 
+column = ColumnTransformer(
+    [
+        ("encorder", OneHotEncoder(sparse_output = False, drop = "first"), ["island", "sex"]),
+        ("ordinal", OrdinalEncoder(), ["year"])
+    ],
+    remainder = "passthrough",
+    verbose_feature_names_out = False,
+    force_int_remainder_cols = False
+)
+
 pipeline = Pipeline([
+    ("column_transformer", column),
     ("scaler", StandardScaler()),
     ("classifier", LogisticRegression(random_state=42))
 ])
@@ -52,4 +64,4 @@ accuracy = accuracy_score(y_test, y_pred)
 
 print (accuracy)
 
-joblib.dump(best_model, "best_wine_quality_model.joblib")
+joblib.dump(best_model, "best_species_classifier.joblib")

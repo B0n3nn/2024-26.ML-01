@@ -22,5 +22,5 @@ jobs:
         working-directory: bono
       - uses: actions/upload-artifact@v4
         with:
-          name: Davide-Bono-modello
-          path: bono/best_wine_quality_model.joblib
+          name: best_species_classifier-v.0.0.1-RC
+          path: bono/best_species_classifier.joblib
