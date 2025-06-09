@@ -39,5 +39,7 @@ jobs:
       - run: pip install scikit-learn joblib pandas pytest flask
       - uses: actions/download-artifact@v4
         with:
+          name: best_species_classifier-v.0.0.1-RC
           path: bono/
-      - run: pytest bono/
+      - run: pytest
+        working-directory: bono
